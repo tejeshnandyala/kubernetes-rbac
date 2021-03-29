@@ -1,0 +1,30 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1alpha1
+kind: ClusterRole
+metadata:
+  name: kubelet-runtime
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+      - persistentvolumes
+      - persistentvolumeclaims
+      - secrets
+      - services
+      - healthz
+    verbs: ["get", "watch", "list"]
+  - nonResourceURLs: ["*"]
+    verbs: ["get", "watch", "list"]
+  - apiGroups:
+      - ""
+    resources:
+      - events
+      - nodes
+      - nodes/status
+      - pods
+      - pods/status
+    verbs: ["*"]
+  - nonResourceURLs: ["*"]
+    verbs: ["*"]
+
